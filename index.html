@@ -42,25 +42,26 @@
 </head>
 
 <body class="text-center">
-  <form class='signin' action="home.html">
+  <form class='signin'>
     <h2>Iniciar sesión</h2><br>
 
-    <label for="nombreUsuario"><b>Nombre de usuario</b></label>
-    <input type="text" name="nombre" required>
+    <label for="nombre"><b>Nombre de usuario</b></label>
+    <input type="text" id='nombreUsuario' name="nombre" required>
     <br>
     <label for="pass"><b>Contraseña</b></label>
-    <input type="password" name="pass" required>
+    <input type="password" id='passUsuario' name="pass" required>
     <br>
-    <input type="submit" id="botonEntrar" value='Entrar'></button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Recordarme
     </label>
+    <input type="button" id="botonEntrar" onclick="login()" value='Entrar'>
     <p class="psw"><a href="#">Olvidó su contraseña?</a></p>
   </form>
+  
 
   <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
-  <script src="js/init.js"></script>
+  <!-- <script src="js/init.js"></script> -->
   <script src="js/login.js"></script>
 </body>
 
