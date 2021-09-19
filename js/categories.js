@@ -52,7 +52,7 @@ showCategoriesList = () => {
                             <h4 class="mb-1">${category.name}</h4>
                             <small class="text-muted">${category.productCount} artículos</small>
                         </div>
-                        <p class="mb-1">${category.description}</p>
+                        <p class="mb-1"><em>${category.description}</em></p>
                     </div>
                 </div>
             </a>

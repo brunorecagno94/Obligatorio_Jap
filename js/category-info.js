@@ -1,6 +1,6 @@
-var category = {};
+let category = {};
 
-function showImagesGallery(array){
+showImagesGallery = array => {
 
     let htmlContentToAppend = "";
 
@@ -10,7 +10,7 @@ function showImagesGallery(array){
         htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+                <img class="img-fluid img-thumbnail" src="${imageSrc}" alt="">
             </div>
         </div>
         `
@@ -19,9 +19,9 @@ function showImagesGallery(array){
     }
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+
+
+
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CATEGORY_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")

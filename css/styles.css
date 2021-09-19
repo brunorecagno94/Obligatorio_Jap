@@ -186,3 +186,15 @@ a.custom-card:hover {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;} 
+
+.related-product {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(228, 228, 228, 0.945);
+  box-sizing: inherit;
+}
+
+.rating__star {
+  cursor: pointer;
+  color: #dabd18b2;
+}

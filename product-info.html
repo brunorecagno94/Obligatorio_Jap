@@ -10,6 +10,7 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -25,14 +26,34 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 19/09/2021) y Entrega 4 (Fecha de entrega: 03/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
+  <main role="main" class="container">
+    <div id="product-info" class="container mt-5"></div>
+    <div id="product-review" class="container mt-5"></div>
+    <div id="comment-form" class="container">
+      <hr class="my-3">
+      <form>
+        <h3>Deja tu comentario sobre el producto</h3><br>
+        <label for="comentario"><em>Escribe aquí tu comentario:</em><br>
+          <textarea name="comentario" id="text-area" rows="4" cols="60"
+            class="shadow-sm p-3 bg-white rounded"></textarea>
+        </label><br>
+        <label><em>Puntuación:</em></label><br>
+        <i class="rating__star far fa-star estrella"></i>
+        <i class="rating__star far fa-star estrella"></i>
+        <i class="rating__star far fa-star estrella"></i>
+        <i class="rating__star far fa-star estrella"></i>
+        <i class="rating__star far fa-star estrella"></i>
+        <br>
+        <input type="button" onclick="publicarComentario()" value="Enviar comentario"
+          style="margin-bottom: 25px; margin-top: 10px;">
+      </form>
+    </div><br>
+    <dd class="col-12">
+      <h3>Productos relacionados</h3><br>
+    </dd>
+
+    <div id="related-products" class="container row"></div>
+  </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">

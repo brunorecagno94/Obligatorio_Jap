@@ -57,7 +57,7 @@ menuBarraNav = () => {
 
 //Función para mostrar el menú dropdown
 //cuando se hace click en el usuario
-function mostrarMenu() {
+mostrarMenu = () => {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 

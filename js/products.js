@@ -42,6 +42,7 @@ showProductsList = sortedProductsArray => {
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))) {
 
             htmlContentToAppend += `
+    <a href="product-info.html" style="text-decoration:none">
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
@@ -58,6 +59,7 @@ showProductsList = sortedProductsArray => {
                 </div>
             </div>
         </div>
+    </a>
         `
             document.getElementById("products-container").innerHTML = htmlContentToAppend;
         }
@@ -71,10 +73,6 @@ sortAndShowProducts = (sortCriteria, productsArray) => {
     showProductsList(sortedProductsArray);
 }
 
-
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL).then(resultObj => {
         if (resultObj.status === "ok") {
