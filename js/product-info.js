@@ -4,7 +4,6 @@ const estrellaVacia = `<i class="rating__star far fa-star"></i>`;
 let contadorEstrella = 0;
 
 mostrarInfoProducto = datosProducto => {
-    let imagenesProducto = datosProducto.images;
 
     let htmlContentToAppend = `
     <h1>${datosProducto.name}</h1>
@@ -29,34 +28,36 @@ mostrarInfoProducto = datosProducto => {
         <dd>
           <a href="category-info.html">${datosProducto.category}</a>
         </dd>
-
-        <h5><strong>Imágenes ilustrativas</strong></h5>
-        <dd>
-          <div class="row text-center text-lg-left pt-2" id="imagenes-producto">
-          </div>
-        </dd>
-      </dl>
     `
     document.getElementById('product-info').innerHTML = htmlContentToAppend;
-    mostrarImagenes(imagenesProducto);
+    mostrarImagenes(datosProducto);
 }
 
-//Muestra las imágenes; esta función luego se llama en mostrarInfoProductos()
-//para mostrar toda la información junta
-mostrarImagenes = arrayImagenes => {
+//Añade las imágenes al carrusel ya armado en html
+mostrarImagenes = datosProducto => {
+    let arrayImagenes = datosProducto.images;
+
+    document.getElementById("carousel-container").innerHTML += `
+    <div class="carousel-item active">
+      <img src="${arrayImagenes[0]}" class="d-block" alt="...">
+    </div>`
+
     let htmlContentToAppend = "";
+    let indicadores =""
 
-    for (let imagen of arrayImagenes) {
+    for (let i = 1; i < arrayImagenes.length; i++) {
+        const imagen = arrayImagenes[i];
+
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="${imagen}" alt="">
-            </div>
-        </div>
-        `
+        <div class="carousel-item">
+            <img src="${imagen}" class="d-block">
+        </div>`
 
-        document.getElementById("imagenes-producto").innerHTML = htmlContentToAppend;
+        indicadores +=`
+        <li data-target="#carouselExampleIndicators" data-slide-to="${i}"></li>`
     }
+    document.getElementById("carousel-container").innerHTML += htmlContentToAppend;
+    document.getElementById("indicadores").innerHTML += indicadores;
 }
 
 //Ordena los comentarios precargados por fecha
@@ -154,8 +155,6 @@ pintarEstrellas = arrayEstrellas => {
     });
 }
 
-pintarEstrellas(arrayEstrellas);
-
 //Agrega estrellas al comentario que el usuario publica
 //(tantas como se hayan marcado en la función pintarEstrellas)
 añadirEstrellasAComentario = i => {
@@ -189,9 +188,9 @@ mostrarProductosRelacionados = (arrayProductos, infoProductos) => {
     }
 }
 
-
-document.addEventListener("DOMContentLoaded", function (e) {
-
+$(document).ready(function (e) {
+    pintarEstrellas(arrayEstrellas);
+    
     document.getElementById("text-area").value = ""
 
     getJSONData(PRODUCT_INFO_URL).then(resultObj => {

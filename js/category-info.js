@@ -22,7 +22,7 @@ showImagesGallery = array => {
 
 
 
-document.addEventListener("DOMContentLoaded", function(e){
+$(document).ready(function(e){
     getJSONData(CATEGORY_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {

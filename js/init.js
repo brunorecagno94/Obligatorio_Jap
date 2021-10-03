@@ -7,16 +7,16 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/pro
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
-var showSpinner = function () {
+let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-var hideSpinner = function () {
+let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-var getJSONData = function (url) {
-  var result = {};
+let getJSONData = function (url) {
+  let result = {};
   showSpinner();
   return fetch(url)
     .then(response => {
@@ -38,7 +38,8 @@ var getJSONData = function (url) {
     });
 }
 
-//Función para agregar menú en la barra de navegación (con link al perfil y opción de cerrar sesión)
+//Función para agregar menú en la barra de navegación
+//(con link al perfil y opción de cerrar sesión)
 menuBarraNav = () => {
   let nombreBarra = sessionStorage.getItem('nombre');
 
@@ -61,6 +62,20 @@ mostrarMenu = () => {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
+//Función que cierra el menú dropdown al hacer click afuera
+$(window).click(function (e) {
+  if (!e.target.matches('.dropbtn')) {
+    let dropdowns = document.getElementsByClassName("dropdown-content");
+    let i;
+    for (i = 0; i < dropdowns.length; i++) {
+      let openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+})
+
 cerrarSesion = () => {
   sessionStorage.clear();
 }
@@ -68,10 +83,11 @@ cerrarSesion = () => {
 //Event listener que se encarga de cargar el menú
 //del usuario en la barra de navegación, y también
 //de redireccionar al login si no está hecho previamente.
-document.addEventListener("DOMContentLoaded", function (e) {
+$(document).ready(function (e) {
   menuBarraNav();
 
   if (window.location.href != 'index.html') {
-    if (sessionStorage.getItem('nombre') === null || sessionStorage.getItem('pass') === null) window.location.href = 'index.html'; 
+    if (sessionStorage.getItem('nombre') === null || sessionStorage.getItem('pass') === null) window.location.href = 'index.html';
   }
 });
+

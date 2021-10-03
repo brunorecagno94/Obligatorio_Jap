@@ -11,3 +11,11 @@ login = () => {
     sessionStorage.setItem('nombre', nombreUsuario);
     sessionStorage.setItem('pass', passUsuario);
 }
+
+//Función para activar el botón de login con la tecla "Enter"
+$(window).keydown(function(e) {
+    if(e.code === "Enter") {
+        e.preventDefault();
+        document.getElementById("botonEntrar").click();
+    }
+})

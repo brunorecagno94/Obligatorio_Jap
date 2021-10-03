@@ -73,7 +73,43 @@ sortAndShowProducts = (sortCriteria, productsArray) => {
     showProductsList(sortedProductsArray);
 }
 
-document.addEventListener("DOMContentLoaded", function (e) {
+//Función que filtra los productos por nombre
+document.getElementById("buscador-prod").addEventListener("keyup", function (e) {
+
+    let inputBuscador = document.getElementById("buscador-prod").value;
+    let htmlContentToAppend = ""
+
+    //Uso los métodos .toLowerCase para evitar discordancias de mayúsculas y minúsculas 
+    //entre lo que ingresa el usuario y los nombres/descripciones de los productos,
+    //y los métodos .normalize y .replace para que ignore tildes
+    for (let product of productsArray) {
+        if (((product.name).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).includes(inputBuscador.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
+            ((product.description).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).includes(inputBuscador.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+
+            htmlContentToAppend += `
+            <div class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-3">
+                    <img src="${product.imgSrc} " alt="${product.description} " class="img-thumbnail">
+                    <p><strong>${product.currency} ${product.cost}</strong></p>
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h3 class="mb-1">${product.name}</h3>
+                        <small class="text-muted">${product.soldCount} vendidos</small>
+                    </div>
+                
+                    <p><em>${product.description}</em></p>
+                </div>
+            </div>
+        </div>
+        `
+        }
+        document.getElementById("products-container").innerHTML = htmlContentToAppend;
+    }
+});
+
+$(document).ready(function (e) {
     getJSONData(PRODUCTS_URL).then(resultObj => {
         if (resultObj.status === "ok") {
             productsArray = resultObj.data;
@@ -127,38 +163,3 @@ document.addEventListener("DOMContentLoaded", function (e) {
 })
 
 
-//Función que filtra los productos por nombre
-document.getElementById("buscador-prod").addEventListener("keyup", function (e) {
-
-    let inputBuscador = document.getElementById("buscador-prod").value;
-    let htmlContentToAppend = ""
-
-    //Uso los métodos .toLowerCase para evitar discordancias de mayúsculas y minúsculas 
-    //entre lo que ingresa el usuario y los nombres/descripciones de los productos,
-    //y los métodos .normalize y .replace para que ignore tildes
-    for (let product of productsArray) {
-        if (((product.name).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).includes(inputBuscador.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
-            ((product.description).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).includes(inputBuscador.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
-
-            htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="${product.imgSrc} " alt="${product.description} " class="img-thumbnail">
-                    <p><strong>${product.currency} ${product.cost}</strong></p>
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h3 class="mb-1">${product.name}</h3>
-                        <small class="text-muted">${product.soldCount} vendidos</small>
-                    </div>
-                
-                    <p><em>${product.description}</em></p>
-                </div>
-            </div>
-        </div>
-        `
-        }
-        document.getElementById("products-container").innerHTML = htmlContentToAppend;
-    }
-});
