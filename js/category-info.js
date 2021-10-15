@@ -15,7 +15,7 @@ showImagesGallery = array => {
         </div>
         `
 
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        $("#productImagesGallery").html(htmlContentToAppend);
     }
 }
 

@@ -22,6 +22,8 @@
       user-select: none;
     }
 
+    ;
+
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -43,22 +45,104 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main role="main" class="pb-5">
+    <div class="container">
+      <div class="text-center p-4">
+        <h2>Mi carrito</h2>
+        <p class="lead"></p>
+      </div>
+      <div id="interfaz-producto" class="col-12"></div>
+
+      <div id="interfaz-compra" class="col-lg-8 md-6 sm-4 py-5">
+        <div>
+          <label for="state">Moneda</label>
+          <select class="col-lg-4 custom-select d-block w-100" id="productCurrency" onchange="convertirMoneda(this.value)"
+            required="">
+            <option selected value="USD">Dólares (USD)</option>
+            <option value="UYU">Pesos Uruguayos (UYU)</option>
+          </select>
+        </div>
+        <div class="py-3">
+          <h4><strong>Subtotal</strong></h4>
+          <p>
+            <span id="subtotal-compra"></span>
+            <span id="subtotal-compra-precio"></span>
+          </p>
+        </div><hr><hr>
+        <div class="d-block col-lg-12 md-6 sm-4 my-3">
+            <h5 class="mb-3 ">Tipo de publicación</h5>
+            <div class="custom-control custom-radio">
+              <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+                required="">
+              <label class="custom-control-label" for="goldradio">Gold (13%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="premiumradio">Premium (7%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="standardradio">Estándar (3%)</label>
+            </div>
+            <div class="row">
+              <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
+                condiciones</button>
+            </div>
+          </div>
+          <div class="col-lg-8 md-8 sm-4 mb-3">
+            <label for="productName">Nombre completo</label>
+            <input type="text" class="col-lg-6 md-8 sm-4 form-control" id="productName" placeholder="" value="">
+            <label for="adress">Dirección de envío</label>
+            <input type="text" class="form-control" id="productName" placeholder="" value="">
+          </div>
+          <button class="btn btn-primary btn-lg ml-3 mt-2" type="submit">Comprar</button>
+      </div>
     </div>
-  </div>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Condiciones de publicación</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <h5 class="text-warning">Gold (13%)</h5>
+                <p class="muted text-justify">Tu producto se verá de forma promocionada en portada, además de las
+                  condiciones de Premium y Estándar.</p>
+              </div>
+              <hr>
+              <div class="row">
+                <h5 class="text-primary">Stándar (7%)</h5>
+                <p class="muted text-justify">Se mostrará el producto en los primeros lugares de resultados de búsqueda,
+                  así cómo cuando se ingrese a la categoría que pertenezca.</p>
+              </div>
+              <hr>
+              <div class="row">
+                <h5 class="text-secondary">Estándar (3%)</h5>
+                <p class="muted text-justify">El producto se listará en la categoría correspondiente, así como en los
+                  resultados de búsquedas que coincidan con las palabras claves en el nombre.</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </main>
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>

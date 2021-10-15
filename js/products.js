@@ -61,7 +61,7 @@ showProductsList = sortedProductsArray => {
         </div>
     </a>
         `
-            document.getElementById("products-container").innerHTML = htmlContentToAppend;
+            $("#products-container").html(htmlContentToAppend);
         }
     }
 }
@@ -74,7 +74,7 @@ sortAndShowProducts = (sortCriteria, productsArray) => {
 }
 
 //Función que filtra los productos por nombre
-document.getElementById("buscador-prod").addEventListener("keyup", function (e) {
+$("#buscador-prod").keyup(function (e) {
 
     let inputBuscador = document.getElementById("buscador-prod").value;
     let htmlContentToAppend = ""
@@ -117,21 +117,21 @@ $(document).ready(function (e) {
         }
     });
 
-    document.getElementById("sortAsc").addEventListener("click", function () {
+    $("#sortAsc").click(function () {
         sortAndShowProducts(ORDER_ASC_BY_PRICE, productsArray);
     });
 
-    document.getElementById("sortDesc").addEventListener("click", function () {
+    $("#sortDesc").click(function () {
         sortAndShowProducts(ORDER_DESC_BY_PRICE, productsArray);
     });
 
-    document.getElementById("sortByCount").addEventListener("click", function () {
+    $("#sortByCount").click(function () {
         sortAndShowProducts(ORDER_BY_PROD_COUNT, productsArray);
     });
 
-    document.getElementById("clearRangeFilter").addEventListener("click", function () {
-        document.getElementById("rangeFilterCountMin").value = "";
-        document.getElementById("rangeFilterCountMax").value = "";
+    $("#clearRangeFilter").click(function () {
+        $("#rangeFilterCountMin").value = "";
+        $("#rangeFilterCountMax").value = "";
 
         minCount = undefined;
         maxCount = undefined;
@@ -139,10 +139,10 @@ $(document).ready(function (e) {
         showProductsList(productsArray);
     });
 
-    document.getElementById("rangeFilterCount").addEventListener("click", function () {
+    $("#rangeFilterCount").click(function () {
 
-        minCount = document.getElementById("rangeFilterCountMin").value;
-        maxCount = document.getElementById("rangeFilterCountMax").value;
+        minCount = $("#rangeFilterCountMin").val();
+        maxCount = $("#rangeFilterCountMax").val();
 
         if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0) {
             minCount = parseInt(minCount);

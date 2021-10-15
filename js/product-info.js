@@ -29,7 +29,7 @@ mostrarInfoProducto = datosProducto => {
           <a href="category-info.html">${datosProducto.category}</a>
         </dd>
     `
-    document.getElementById('product-info').innerHTML = htmlContentToAppend;
+    $('#product-info').html(htmlContentToAppend);
     mostrarImagenes(datosProducto);
 }
 
@@ -75,7 +75,7 @@ ordenarComentariosPorFecha = arrayComentarios => {
 //Una vez que la función anterior ordena los comentarios por fecha,
 //esta función los muestra en una lista
 mostrarComentariosYPuntaje = comentariosOrdenados => {
-    document.getElementById("product-review").innerHTML = `
+    $("#product-review").html = `
     <dd>
         <h2>Comentarios</h2>
     </dd><br>
@@ -112,7 +112,7 @@ puntajeEstrellasComentarios = comentariosOrdenados => {
 }
 
 publicarComentario = () => {
-    let comentario = document.getElementById("text-area").value;
+    let comentario = $("#text-area").val();
     let fecha = new Date();
     let fechaActual = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
     let horaActual = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
@@ -123,7 +123,7 @@ publicarComentario = () => {
     } else {
 
         document.getElementById("product-review").innerHTML += `
-        <p><strong>${sessionStorage.getItem("nombre")}</strong></p>
+        <p><strong>${localStorage.getItem("nombre")}</strong></p>
         <p><em>${comentario}</em></p>
         <div class="puntaje-usuario"></div>
         <small class="text-muted">${fechaActual} ${horaActual}</small><br>
@@ -132,7 +132,7 @@ publicarComentario = () => {
         añadirEstrellasAComentario(contadorEstrella);
         contadorEstrella++;
     }
-    document.getElementById("text-area").value = ""
+    $("#text-area").val("")
 
 }
 
@@ -191,14 +191,7 @@ mostrarProductosRelacionados = (arrayProductos, infoProductos) => {
 $(document).ready(function (e) {
     pintarEstrellas(arrayEstrellas);
     
-    document.getElementById("text-area").value = ""
-
-    getJSONData(PRODUCT_INFO_URL).then(resultObj => {
-        if (resultObj.status === "ok") {
-            let datosProducto = resultObj.data;
-            mostrarInfoProducto(datosProducto);
-        }
-    });
+    $("#text-area").val("");
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(resultObj => {
         if (resultObj.status === "ok") {
@@ -214,10 +207,10 @@ $(document).ready(function (e) {
             getJSONData(PRODUCT_INFO_URL).then(resultObj2 => {
                 if (resultObj2.status === "ok") {
                     let infoProductos = resultObj2.data;
+                    mostrarInfoProducto(infoProductos);
                     mostrarProductosRelacionados(arrayProductos, infoProductos);
                 }
             });
         }
     });
-
 });

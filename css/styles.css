@@ -198,3 +198,13 @@ a.custom-card:hover {
   cursor: pointer;
   color: #dabd18b2;
 }
+
+.input-buscador {
+  margin-bottom: 10px;
+  position: absolute;
+  right: 1px;
+  transition: border 0.5s;
+}
+.input-buscador:focus {
+  border: 1px solid gray;
+}

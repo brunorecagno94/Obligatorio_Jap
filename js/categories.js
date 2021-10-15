@@ -59,7 +59,7 @@ showCategoriesList = () => {
             `
         }
 
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+        $("#cat-list-container").html(htmlContentToAppend);
     }
 }
 
@@ -84,21 +84,21 @@ $(document).ready(function (e) {
         if (resultObj.status === "ok") sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
     });
 
-    document.getElementById("sortAsc").addEventListener("click", function () {
+    $("#sortAsc").click(function () {
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
 
-    document.getElementById("sortDesc").addEventListener("click", function () {
+    $("#sortDesc").click(function () {
         sortAndShowCategories(ORDER_DESC_BY_NAME);
     });
 
-    document.getElementById("sortByCount").addEventListener("click", function () {
+    $("#sortByCount").click(function () {
         sortAndShowCategories(ORDER_BY_PROD_COUNT);
     });
 
-    document.getElementById("clearRangeFilter").addEventListener("click", function () {
-        document.getElementById("rangeFilterCountMin").value = "";
-        document.getElementById("rangeFilterCountMax").value = "";
+    $("#clearRangeFilter").click(function () {
+        $("#rangeFilterCountMin").value = "";
+        $("#rangeFilterCountMax").value = "";
 
         minCount = undefined;
         maxCount = undefined;
@@ -106,11 +106,11 @@ $(document).ready(function (e) {
         showCategoriesList();
     });
 
-    document.getElementById("rangeFilterCount").addEventListener("click", function () {
+    $("#rangeFilterCount").click(function () {
         //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
         //de productos por categoría.
-        minCount = document.getElementById("rangeFilterCountMin").value;
-        maxCount = document.getElementById("rangeFilterCountMax").value;
+        minCount = $("#rangeFilterCountMin").val();
+        maxCount = $("#rangeFilterCountMax").val();
 
         if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0) {
             minCount = parseInt(minCount);
@@ -131,9 +131,9 @@ $(document).ready(function (e) {
 });
 
 //Función que filtra las categorías por nombre
-document.getElementById("buscador-cat").addEventListener("keyup", function (e) {
+$("#buscador-cat").keyup(function (e) {
 
-    let inputBuscador = document.getElementById("buscador-cat").value;
+    let inputBuscador = $("#buscador-cat").val();
     let htmlContentToAppend = ""
 
     //Uso los métodos .normalize y .replace para que ignore tildes
@@ -158,6 +158,6 @@ document.getElementById("buscador-cat").addEventListener("keyup", function (e) {
             </a>
             `
         }
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+        $("#cat-list-container").html(htmlContentToAppend);
     }
 });

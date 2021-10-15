@@ -5,6 +5,7 @@ const PRODUCTS_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json
 const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
+const CART_INFO2_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
 let showSpinner = function () {
@@ -41,7 +42,7 @@ let getJSONData = function (url) {
 //Función para agregar menú en la barra de navegación
 //(con link al perfil y opción de cerrar sesión)
 menuBarraNav = () => {
-  let nombreBarra = sessionStorage.getItem('nombre');
+  let nombreBarra = localStorage.getItem('nombre');
 
   let htmlContentToAppend = `
   <div class="dropdown">
@@ -77,7 +78,7 @@ $(window).click(function (e) {
 })
 
 cerrarSesion = () => {
-  sessionStorage.clear();
+  localStorage.clear();
 }
 
 //Event listener que se encarga de cargar el menú
@@ -87,7 +88,8 @@ $(document).ready(function (e) {
   menuBarraNav();
 
   if (window.location.href != 'index.html') {
-    if (sessionStorage.getItem('nombre') === null || sessionStorage.getItem('pass') === null) window.location.href = 'index.html';
+    if (localStorage.getItem('nombre') === null || localStorage.getItem('pass') === null) window.location.href = 'index.html';
   }
 });
+
 
