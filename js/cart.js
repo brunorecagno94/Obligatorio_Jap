@@ -47,10 +47,10 @@ convertirMoneda = (moneda) => {
                 producto.unitCost /= 40;
             }
         }
-    }    
-    document.getElementById("subtotal-compra").innerHTML = moneda;
-    mostrarProductos(arrayProductos)
-    calcularSubtotalCompra();
+        document.getElementById("subtotal-compra").innerHTML = moneda;
+        mostrarProductos(arrayProductos)
+        calcularSubtotalCompra();
+    }
 }
 
 calcularSubtotal = () => {
@@ -96,13 +96,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(CART_INFO2_URL).then(result => {
         if (result.status === "ok") {
             arrayProductos = result.data.articles;
-            
+
             mostrarProductos(arrayProductos);
             convertirMoneda("USD");
             calcularSubtotal();
-            calcularSubtotalCompra();   
+            calcularSubtotalCompra();
         }
     })
-    
+
 
 });

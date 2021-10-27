@@ -43,14 +43,21 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main role="main" class="px-5">
+    <div class="py-5">
+      <label for="nombre" class="ml-2">Nombre</label>
+      <input type="text" class="my-3 ml-2" name="nombre" id="nombreUsuario">
+      <label for="apellido" class="ml-2">Apellido</label>
+      <input type="text" class="my-3 ml-2" name="apellido" id="apellidoUsuario"><br>
+      <label for ="edad" class="ml-2">Edad</label>
+      <input type="number" class="my-3 ml-2" name="edad" id="edad" min="1">
+      <label for="email" class="ml-2">E-mail</label>
+      <input type="email" class="my-3 ml-2" name="email" id="eMail">
+      <label for="tel" class="ml-2">Teléfono</label>
+      <input type="tel" class="my-3 ml-2" name="tel" id="tel" max="099999999"><br>
+      <input type="button" class="my-3 ml-2" onclick="guardarUserData()" value="Guardar cambios">
     </div>
-  </div>
+  </main>
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
