@@ -42,24 +42,21 @@ showProductsList = sortedProductsArray => {
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))) {
 
             htmlContentToAppend += `
-    <a href="product-info.html" style="text-decoration:none">
-        <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="${product.imgSrc} " alt="${product.description} " class="img-thumbnail">
-                    <p><strong>${product.currency} ${product.cost}</strong></p>
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h3 class="mb-1">${product.name}</h3>
+    
+            <div class="list-group-item-action card col-xs-8 col-sm-6 col-md-4 col-lg-4">
+                <a href="product-info.html" style="text-decoration:none; color: #404244">
+                    <div class="col-12">
+                        <img src="${product.imgSrc} " alt="${product.description} " class="bd-placeholder-img card-img-top">
+                        <p><strong>${product.currency} ${product.cost}</strong></p>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h3 class="mb-1">${product.name}</h3>
                         <small class="text-muted">${product.soldCount} vendidos</small>
                     </div>
-                
-                    <p><em>${product.description}</em></p>
                 </div>
-            </div>
+            </a>
         </div>
-    </a>
         `
             $("#products-container").html(htmlContentToAppend);
         }
@@ -87,21 +84,19 @@ $("#buscador-prod").keyup(function (e) {
             ((product.description).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).includes(inputBuscador.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
 
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="${product.imgSrc} " alt="${product.description} " class="img-thumbnail">
+            <div class="list-group-item-action card col-xs-8 col-sm-4 col-md-4 col-lg-4">
+            <a href="product-info.html" style="text-decoration:none; color: #404244">
+                <div class="col-12">
+                    <img src="${product.imgSrc} " alt="${product.description} " class="bd-placeholder-img card-img-top">
                     <p><strong>${product.currency} ${product.cost}</strong></p>
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
-                        <h3 class="mb-1">${product.name}</h3>
-                        <small class="text-muted">${product.soldCount} vendidos</small>
+                            <h3 class="mb-1">${product.name}</h3>
+                    <small class="text-muted">${product.soldCount} vendidos</small>
                     </div>
-                
-                    <p><em>${product.description}</em></p>
-                </div>
             </div>
+            </a>
         </div>
         `
         }
