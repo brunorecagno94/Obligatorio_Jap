@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id" content="513720773540-4dl9enrrrta60tft4vrb3b75shn5bjq9.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="513720773540-4dl9enrrrta60tft4vrb3b75shn5bjq9.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <title>eMercado - Todo lo que busques está aquí</title>
 
@@ -45,7 +46,7 @@
 </head>
 
 <body class="text-center">
-  <form class='signin'>
+  <form class="signin col justify-content-center">
     <h2>Iniciar sesión</h2><br>
 
     <label for="nombre"><b>Nombre de usuario</b></label>
@@ -58,14 +59,12 @@
       <input type="checkbox" checked="checked" name="remember"> Recordarme
     </label>
     <input type="button" id="botonEntrar" onclick="login()" value='Entrar'>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <p class="psw"><a href="#">Olvidó su contraseña?</a></p>
   </form>
 
-  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-  <!-- <script src="js/init.js"></script> -->
   <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/init.js"></script>
   <script src="js/login.js"></script>
 </body>
 

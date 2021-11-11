@@ -208,3 +208,12 @@ a.custom-card:hover {
 .input-buscador:focus {
   border: 1px solid gray;
 }
+
+.g-signin2{
+  width: 100%;
+  margin: 10px;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+}
