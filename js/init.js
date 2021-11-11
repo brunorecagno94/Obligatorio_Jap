@@ -81,8 +81,8 @@ $(window).click(function (e) {
 cerrarSesion = () => {
   localStorage.clear();
 
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut()
+  let auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut();
 }
 
 
