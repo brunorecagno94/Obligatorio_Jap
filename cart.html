@@ -54,86 +54,129 @@
       <div id="interfaz-producto" class="col-12"></div>
 
       <div id="interfaz-compra" class="col-lg-8 md-6 sm-4 py-5">
-        <div>
-          <label for="state">Moneda</label>
-          <select class="col-lg-4 custom-select d-block w-100" id="productCurrency" onchange="convertirMoneda(this.value)"
-            required="">
-            <option selected value="USD">Dólares (USD)</option>
-            <option value="UYU">Pesos Uruguayos (UYU)</option>
-          </select>
-        </div>
-        <div class="py-3">
-          <h4><strong>Subtotal</strong></h4>
-          <p>
-            <span id="subtotal-compra"></span>
-            <span id="subtotal-compra-precio"></span>
-          </p>
-        </div><hr><hr>
-        <div class="d-block col-lg-12 md-6 sm-4 my-3">
-            <h5 class="mb-3 ">Tipo de publicación</h5>
+        <form>
+          <div>
+            <label>Moneda</label>
+            <select class="col-lg-4 custom-select d-block w-100" id="productCurrency"
+              onchange="convertirMoneda(this.value)" required="">
+              <option id="optionUSD" value="USD" selected>Dólares (USD)</option>
+              <option id="optionUYU" value="UYU">Pesos Uruguayos (UYU)</option>
+            </select>
+          </div>
+          <div class="d-block col-lg-12 md-6 sm-4 my-3">
+            <h5 class="mb-3 ">Tipo de envío</h5>
             <div class="custom-control custom-radio">
-              <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
-                required="">
-              <label class="custom-control-label" for="goldradio">Gold (13%)</label>
+              <input id="localradio" name="publicationType" type="radio" onclick="calcularRetiro()"
+                class="custom-control-input radioEnvio">
+              <label class="custom-control-label" for="localradio">Retiro en el local</label>
             </div>
             <div class="custom-control custom-radio">
-              <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
-              <label class="custom-control-label" for="premiumradio">Premium (7%)</label>
+              <input id="premiumradio" name="publicationType" type="radio" onclick="calcularPremium()"
+                class="custom-control-input radioEnvio">
+              <label class="custom-control-label" for="premiumradio">Premium: 2 a 5 días (15%)</label>
             </div>
             <div class="custom-control custom-radio">
-              <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
-              <label class="custom-control-label" for="standardradio">Estándar (3%)</label>
+              <input id="expressradio" name="publicationType" type="radio" onclick="calcularExpress()"
+                class="custom-control-input radioEnvio">
+              <label class="custom-control-label" for="expressradio">Express: 5 a 8 días (7%)</label>
             </div>
-            <div class="row">
-              <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver
-                condiciones</button>
+            <div class="custom-control custom-radio">
+              <input id="estandarradio" name="publicationType" type="radio" onclick="calcularEstandar()"
+                class="custom-control-input radioEnvio">
+              <label class="custom-control-label" for="estandarradio">Estándar: 12 a 15 días (5%)</label>
             </div>
           </div>
           <div class="col-lg-8 md-8 sm-4 mb-3">
             <label for="productName">Nombre completo</label>
-            <input type="text" class="col-lg-6 md-8 sm-4 form-control" id="productName" placeholder="" value="">
+            <input type="text" class="col-lg-6 md-8 sm-4 form-control" id="productName" value="" required>
             <label for="adress">Dirección de envío</label>
-            <input type="text" class="form-control" id="productName" placeholder="" value="">
+            <input type="text" class="form-control" id="productName" value="" required>
+          </div>
+          <div class="py-3">
+            <h4><strong>Subtotal</strong></h4>
+            <p>
+              <span id="subtotal-compra-moneda"></span>
+              <span id="subtotal-compra-precio"></span>
+            </p>
+            <h4><strong>Costo de envío</strong></h4>
+            <p>
+              <span id="envio-moneda"></span>
+              <span id="costo-envio">0</span>
+            </p>
+            <h4><strong>Total</strong></h4>
+            <p>
+              <span id="total-compra-moneda"></span>
+              <span id="total-compra"></span>
+            </p>
           </div>
           <button class="btn btn-primary btn-lg ml-3 mt-2" type="submit">Comprar</button>
+        </form>
       </div>
     </div>
-    <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
-      <div class="modal-dialog" role="document">
+
+    <hr>
+    <hr>
+    <div class="row">
+      <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#modalFormaDePago">Forma de
+        pago</button>
+    </div>
+    </div>
+    </div>
+
+    <!-- Modal para forma de pago -->
+    <div class="modal fade" id="modalFormaDePago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Condiciones de publicación</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="row">
-                <h5 class="text-warning">Gold (13%)</h5>
-                <p class="muted text-justify">Tu producto se verá de forma promocionada en portada, además de las
-                  condiciones de Premium y Estándar.</p>
-              </div>
-              <hr>
-              <div class="row">
-                <h5 class="text-primary">Stándar (7%)</h5>
-                <p class="muted text-justify">Se mostrará el producto en los primeros lugares de resultados de búsqueda,
-                  así cómo cuando se ingrese a la categoría que pertenezca.</p>
-              </div>
-              <hr>
-              <div class="row">
-                <h5 class="text-secondary">Estándar (3%)</h5>
-                <p class="muted text-justify">El producto se listará en la categoría correspondiente, así como en los
-                  resultados de búsquedas que coincidan con las palabras claves en el nombre.</p>
+          <form>
+            <div class="modal-header">
+              <h4 class="modal-title">Forma de pago</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Confirmar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form>
+                  <div class="form-group">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="efectivo" name="tipoPago" class="form-check-input" required>
+                      <h5 class="text-dark">En efectivo (retiro en el local)</h5>
+                    </div>
+                    <hr>
+                  </div>
+                  <div class="form-group">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="tarjeta" name="tipoPago" class="form-check-input" required>
+                      <h5 class="text-dark">Tarjeta de crédito</h5>
+                      <label for="recipient-name" class="col-form-label">Número de tarjeta</label>
+                      <input type="text" class="form-control">
+                      <label for="recipient-name" class="col-form-label">Código de seguridad</label>
+                      <input type="text" class="form-control" maxlength="3">
+                      <label for="recipient-name" class="col-form-label">Vencimiento (MM/AA)</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <hr>
+                  </div>
+                  <div class="form-group">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="trans" name="tipoPago" class="form-check-input" required>
+                      <h5 class="text-dark">Transferencia bancaria</h5>
+                      <label for="recipient-name" class="col-form-label">Número de cuenta</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group"></div>
+                </form>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-          </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+
     <div id="spinner-wrapper">
       <div class="lds-ring">
         <div></div>
