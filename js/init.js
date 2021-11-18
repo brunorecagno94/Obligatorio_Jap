@@ -1,12 +1,22 @@
-const CATEGORIES_URL = "https://localhost:3000/categories-all";
-const CATEGORY_INFO_URL = "https://localhost:3000/category-info";
-const PRODUCTS_URL = "https://localhost:3000/products-all";
-const PRODUCT_INFO_URL = "https://localhost:3000/product-info";
-const PRODUCT_INFO_COMMENTS_URL = "https://localhost:3000/product-comments";
-const PUBLISH_PRODUCT_URL = "https://localhost:3000/publish-product";
-const CART_INFO_URL = "https://localhost:3000/cart-article-single";
-const CART_INFO2_URL = "https://localhost:3000/cart-article-2";
-const CART_BUY_URL = "https://localhost:3000/cart-buy-mssg";
+// const CATEGORIES_URL = "https://japdevdep.github.io/ecommerce-api/category/all.json";
+// const PUBLISH_PRODUCT_URL = "https://japdevdep.github.io/ecommerce-api/product/publish.json";
+// const CATEGORY_INFO_URL = "https://japdevdep.github.io/ecommerce-api/category/1234.json";
+// const PRODUCTS_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
+// const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
+// const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
+// const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
+// const CART_INFO2_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
+// const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+
+const CATEGORIES_URL = "http://localhost:3000/categories-all";
+const CATEGORY_INFO_URL = "http://localhost:3000/category-info";
+const PRODUCTS_URL = "http://localhost:3000/products-all";
+const PRODUCT_INFO_URL = "http://localhost:3000/product-info";
+const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/product-comments";
+const PUBLISH_PRODUCT_URL = "http://localhost:3000/publish-product";
+const CART_INFO_URL = "http://localhost:3000/cart-article-single";
+const CART_INFO2_URL = "http://localhost:3000/cart-article-2";
+const CART_BUY_URL = "http://localhost:3000/cart-buy-mssg";
 
 let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
