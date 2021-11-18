@@ -59,15 +59,15 @@
 
       <div id="interfaz-compra" class="col-lg-8 md-6 sm-4 py-5">
         <form>
-          <div>
+          <fieldset>
             <label>Moneda</label>
             <select class="col-lg-4 custom-select d-block w-100" id="productCurrency"
               onchange="convertirMoneda(this.value)" required="">
               <option id="optionUSD" value="USD" selected>Dólares (USD)</option>
               <option id="optionUYU" value="UYU">Pesos Uruguayos (UYU)</option>
             </select>
-          </div>
-          <div class="d-block col-lg-12 md-6 sm-4 my-3">
+          </fieldset>
+          <fieldset class="d-block col-lg-12 md-6 sm-4 my-3">
             <h5 class="mb-3 ">Tipo de envío</h5>
             <div class="custom-control custom-radio">
               <input id="localradio" name="publicationType" type="radio" onclick="calcularRetiro()"
@@ -89,13 +89,13 @@
                 class="custom-control-input radioEnvio">
               <label class="custom-control-label" for="estandarradio">Estándar: 12 a 15 días (5%)</label>
             </div>
-          </div>
-          <div class="col-lg-8 md-8 sm-4 mb-3">
+          </fieldset>
+          <fieldset class="col-lg-8 md-8 sm-4 mb-3" id="datosEnvio">
             <label for="productName">Nombre completo</label>
-            <input type="text" class="col-lg-6 md-8 sm-4 form-control" id="productName" value="" required>
+            <input type="text" class="col-lg-6 md-8 sm-4 form-control" id="nombreCompleto" value="">
             <label for="adress">Dirección de envío</label>
-            <input type="text" class="form-control" id="productName" value="" required>
-          </div>
+            <input type="text" class="form-control" id="direccionEnvio" value="">
+          </fieldset>
           <div class="py-3">
             <h4><strong>Subtotal</strong></h4>
             <p>
@@ -113,17 +113,17 @@
               <span id="total-compra"></span>
             </p>
           </div>
-          <button class="btn btn-primary btn-lg ml-3 mt-2" type="submit">Comprar</button>
+          <div class="row">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFormaDePago">Elegir
+              forma de pago</button>
+          </div>
+          <button class="btn btn-primary btn-lg ml-3 mt-2" type="button"
+            onclick="return validacionCompra()">Comprar</button>
         </form>
       </div>
     </div>
-
     <hr>
     <hr>
-    <div class="row">
-      <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#modalFormaDePago">Forma de
-        pago</button>
-    </div>
     </div>
     </div>
 
@@ -143,30 +143,37 @@
                 <form>
                   <div class="form-group">
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="efectivo" name="tipoPago" class="form-check-input" required>
-                      <h5 class="text-dark">En efectivo (retiro en el local)</h5>
+                      <fieldset id="retiroLocal">
+                        <input type="radio" id="efectivo" name="tipoPago" class="form-check-input"
+                          onclick="pagoEfectivo()">
+                        <h5 class="text-dark">En efectivo (retiro en el local)</h5>
+                      </fieldset>
                     </div>
                     <hr>
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="tarjeta" name="tipoPago" class="form-check-input" required>
+                      <input type="radio" id="tarjeta" name="tipoPago" class="form-check-input" onclick="pagoTarj()">
                       <h5 class="text-dark">Tarjeta de crédito</h5>
-                      <label for="recipient-name" class="col-form-label">Número de tarjeta</label>
-                      <input type="text" class="form-control">
-                      <label for="recipient-name" class="col-form-label">Código de seguridad</label>
-                      <input type="text" class="form-control" maxlength="3">
-                      <label for="recipient-name" class="col-form-label">Vencimiento (MM/AA)</label>
-                      <input type="text" class="form-control">
+                      <fieldset id="pagoTarjeta">
+                        <label for="recipient-name" class="col-form-label">Número de tarjeta</label>
+                        <input type="number" id="numeroTarjeta" class="form-control">
+                        <label for="recipient-name" class="col-form-label">Código de seguridad</label>
+                        <input type="text" id="codigoSeguridad" class="form-control" pattern="\d*" maxlength="4">
+                        <label for="recipient-name" class="col-form-label">Vencimiento (MM/AA)</label>
+                        <input type="text" id="vencimientoTarj" class="form-control">
+                      </fieldset>
                     </div>
                     <hr>
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-radio">
-                      <input type="radio" id="trans" name="tipoPago" class="form-check-input" required>
+                      <input type="radio" id="trans" name="tipoPago" class="form-check-input" onclick="pagoTransfer()">
                       <h5 class="text-dark">Transferencia bancaria</h5>
-                      <label for="recipient-name" class="col-form-label">Número de cuenta</label>
-                      <input type="text" class="form-control">
+                      <fieldset id="pagoTrans">
+                        <label for="recipient-name" class="col-form-label">Número de cuenta</label>
+                        <input type="text" id="numeroCuenta" class="form-control">
+                      </fieldset>
                     </div>
                   </div>
                   <div class="form-group"></div>
@@ -174,7 +181,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary" onclick="validacionModal()">Guardar</button>
             </div>
           </form>
         </div>

@@ -1,13 +1,26 @@
 let arrayProductos = [];
 let arrayInputCantidades = [];
 let porcentajeEnvio = 0;
+const fieldRetiro = document.getElementById("retiroLocal");
+const fieldTarjeta = document.getElementById("pagoTarjeta");
+const fieldTrans = document.getElementById("pagoTrans");
+const radioTarjeta = document.getElementById("tarjeta");
+const radioTrans = document.getElementById("trans");
+const numeroTarjeta = document.getElementById("numeroTarjeta");
+const codigoSeguridad = document.getElementById("codigoSeguridad");
+const vencimiento = document.getElementById("vencimientoTarj");
+const numeroCuenta = document.getElementById("numeroCuenta");
+
+
 
 mostrarProductos = arrayProductos => {
     let estructuraProducto = "";
 
-    for (let producto of arrayProductos) {
+    for (let i = 0; i < arrayProductos.length; i++) {
+        const producto = arrayProductos[i];
+
         estructuraProducto += `
-        <div class="list-group-item">
+        <div id="producto${i} class="list-group-item">
             <div class="row">
                 <div class="col-3 py-2">
                     <img src="${producto.src} " alt="${producto.name} " class="img-thumbnail col-lg-8 col-md-8 col-sm-8 ">
@@ -60,17 +73,16 @@ convertirMoneda = (moneda) => {
     }
 }
 
-
 calcularSubtotal = () => {
     arrayInputCantidades = document.getElementsByClassName("cantidad-articulos");
-    
+
     for (let i = 0; i < arrayInputCantidades.length; i++) {
         const input = arrayInputCantidades[i];
         const unitCost = arrayInputCantidades[i].dataset.unitCost;
-        
+
 
         actualizarSubtotal = () => {
-            
+
             if (input.value === null || input.value === "" || input.value == 0) {
                 input.value = 1;
             }
@@ -84,15 +96,15 @@ calcularSubtotal = () => {
             calcularSubtotalCompra();
         };
         actualizarSubtotal();
-        
+
     }
-    
+
 }
 
 calcularSubtotalCompra = () => {
     let subtotalArticulos = document.getElementsByClassName("subtotal-producto");
     let subtotalCompra = 0;
-    
+
     for (let subtotal of subtotalArticulos) {
         subtotalCompra += Number(subtotal.innerHTML);
     }
@@ -110,6 +122,53 @@ calcularTotal = () => {
     document.getElementById("total-compra").innerHTML = total.toFixed(2);
 }
 
+//Funciones para el modal de forma de pago:
+//Deshabilitan y habilitan las distintas opciones
+pagoEfectivo = () => {
+    fieldRetiro.removeAttribute("disabled");
+    fieldTarjeta.setAttribute("disabled", "");
+    fieldTrans.setAttribute("disabled", "");
+}
+
+pagoTarj = () => {
+    fieldTarjeta.removeAttribute("disabled");
+    fieldTrans.setAttribute("disabled", "");
+}
+
+pagoTransfer = () => {
+    fieldTrans.removeAttribute("disabled");
+    fieldTarjeta.setAttribute("disabled", "");
+}
+
+
+
+validacionModal = () => {
+    if (radioTarjeta.checked) {
+        if (numeroTarjeta.value == "" || codigoSeguridad.value == "" ||
+            vencimiento.value == "") {
+            alert("Debes completar todos los campos");
+        } else {
+            alert("Datos guardados!");
+        }
+    }
+    if (radioTrans.checked) {
+        if (numeroCuenta.value == "") {
+            alert("Debes completar todos los campos");
+        } else {
+            alert("Datos guardados!");
+        }
+    }
+}
+
+validacionCompra = () => {
+    if (document.getElementById("nombreCompleto").value == "" || document.getElementById("direccionEnvio") == "") {
+        alert("Debes completar todos los campos");
+    } else {
+        alert("Has completado tu compra con éxito!");
+    }
+}
+
+//Funciones para calcular los costos de envío
 calcularRetiro = () => {
     porcentajeEnvio = 0;
     calcularTotal();
