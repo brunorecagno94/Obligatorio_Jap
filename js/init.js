@@ -111,8 +111,8 @@ onSignIn = googleUser => {
 cerrarSesion = () => {
   localStorage.clear();
 
-  // let auth2 = gapi.auth2.getAuthInstance();
-  // auth2.signOut();
+  let auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut();
 }
 
 //Event listener que se encarga de cargar el menú
