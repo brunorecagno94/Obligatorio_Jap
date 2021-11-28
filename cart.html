@@ -40,15 +40,17 @@
 </head>
 
 <body>
-  <nav class="site-header sticky-top py-1 bg-dark">
-    <div class="container d-flex flex-column flex-md-row justify-content-between" id="nav">
-      <a class="py-2 d-none d-md-inline-block" href="home.html">Inicio</a>
-      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-    </div>
-  </nav>
+  <header>
+    <nav class="site-header sticky-top py-1 bg-dark">
+      <div class="container d-flex flex-column flex-md-row justify-content-between" id="nav">
+        <a class="py-2 d-none d-md-inline-block" href="home.html">Inicio</a>
+        <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+        <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+        <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+        <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      </div>
+    </nav>
+  </header>
   <main role="main" class="pb-5">
     <div class="container">
       <div class="text-center p-4">
@@ -57,7 +59,7 @@
       </div>
       <div id="interfaz-producto" class="col-12"></div>
 
-      <div id="interfaz-compra" class="col-lg-8 md-6 sm-4 py-5">
+      <section id="interfaz-compra" class="col-lg-8 md-6 sm-4 py-5">
         <form>
           <fieldset>
             <label>Moneda</label>
@@ -120,7 +122,7 @@
           <button class="btn btn-primary btn-lg ml-3 mt-2" type="button"
             onclick="return validacionCompra()">Comprar</button>
         </form>
-      </div>
+      </section>
     </div>
     <hr>
     <hr>

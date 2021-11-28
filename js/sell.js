@@ -68,15 +68,15 @@ $(document).ready( function(e){
     });
 
     //Configuraciones para el elemento que sube archivos
-    var dzoptions = {
+    let dzoptions = {
         url:"/",
         autoQueue: false
     };
-    var myDropzone = new Dropzone("div#file-upload", dzoptions);    
+    let myDropzone = new Dropzone("div#file-upload", dzoptions);    
 
 
     //Se obtiene el formulario de publicación de producto
-    var sellForm = document.getElementById("sell-info");
+    let sellForm = document.getElementById("sell-info");
 
     //Se agrega una escucha en el evento 'submit' que será
     //lanzado por el formulario cuando se seleccione 'Vender'.

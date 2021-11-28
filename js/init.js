@@ -90,17 +90,18 @@ $(window).click(function (e) {
 
 //Botón de login de Google
 onSignIn = googleUser => {
-  // Useful data for your client-side scripts:
+
   let profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+  console.log("ID: " + profile.getId());
   console.log('Full Name: ' + profile.getName());
   console.log('Given Name: ' + profile.getGivenName());
   console.log('Family Name: ' + profile.getFamilyName());
   console.log("Image URL: " + profile.getImageUrl());
   console.log("Email: " + profile.getEmail());
-  
+
   localStorage.setItem('nombre', profile.getName());
   localStorage.setItem('pass', passUsuario);
+  location.href = "home.html";
 
   // The ID token you need to pass to your backend:
   let id_token = googleUser.getAuthResponse().id_token;
@@ -110,10 +111,9 @@ onSignIn = googleUser => {
 cerrarSesion = () => {
   localStorage.clear();
 
-  let auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut();
+  // let auth2 = gapi.auth2.getAuthInstance();
+  // auth2.signOut();
 }
-
 
 //Event listener que se encarga de cargar el menú
 //del usuario en la barra de navegación, y también
@@ -121,9 +121,12 @@ cerrarSesion = () => {
 $(document).ready(function (e) {
   menuBarraNav();
 
-  //if (window.location.href != 'index.html') {
   if (!location.href.includes("index.html")) {
     if (localStorage.getItem('nombre') === null || localStorage.getItem('pass') === null) window.location.href = 'index.html';
+  }
+
+  if (location.href.includes("index.html")) {
+    if (localStorage.getItem('nombre') !== null && localStorage.getItem('pass') !== null) window.location.href = 'home.html';
   }
 });
 

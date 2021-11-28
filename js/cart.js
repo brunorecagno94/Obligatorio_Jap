@@ -12,7 +12,6 @@ const vencimiento = document.getElementById("vencimientoTarj");
 const numeroCuenta = document.getElementById("numeroCuenta");
 
 
-
 mostrarProductos = arrayProductos => {
     let estructuraProducto = "";
 
@@ -20,7 +19,7 @@ mostrarProductos = arrayProductos => {
         const producto = arrayProductos[i];
 
         estructuraProducto += `
-        <div id="producto${i} class="list-group-item">
+        <div id="producto${i}" class="list-group-item">
             <div class="row">
                 <div class="col-3 py-2">
                     <img src="${producto.src} " alt="${producto.name} " class="img-thumbnail col-lg-8 col-md-8 col-sm-8 ">
@@ -43,11 +42,21 @@ mostrarProductos = arrayProductos => {
                         <h6><strong>Subtotal</strong></h6>
                         <p>${producto.currency} <span class="subtotal-producto">${producto.count * producto.unitCost}</span></p>
                     </div>
+                    <div class="col-sm-2 col-md-2 col-lg-3"> 
+                    <input type="button" class="text-right" onclick="borrarArticulo('producto${i}')"></input>   
+                    </div>
                 </div>
             </div>            
         </div>`
     }
     document.getElementById("interfaz-producto").innerHTML = estructuraProducto;
+}
+
+borrarArticulo = idProducto => {
+    const producto = document.getElementById(idProducto);
+    producto.remove();
+
+    calcularTotal();
 }
 
 convertirMoneda = (moneda) => {
@@ -102,7 +111,7 @@ calcularSubtotal = () => {
 }
 
 calcularSubtotalCompra = () => {
-    let subtotalArticulos = document.getElementsByClassName("subtotal-producto");
+    const subtotalArticulos = document.getElementsByClassName("subtotal-producto");
     let subtotalCompra = 0;
 
     for (let subtotal of subtotalArticulos) {
@@ -113,7 +122,7 @@ calcularSubtotalCompra = () => {
 }
 
 calcularTotal = () => {
-    let subtotal = Number(document.getElementById("subtotal-compra-precio").innerHTML);
+    const subtotal = Number(document.getElementById("subtotal-compra-precio").innerHTML);
     let costoEnvio = subtotal * porcentajeEnvio;
     let total = costoEnvio + subtotal;
 

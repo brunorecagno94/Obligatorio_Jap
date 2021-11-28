@@ -20,23 +20,25 @@
 </head>
 
 <body>
-  <nav class="site-header sticky-top py-1 bg-dark">
-    <div class="container d-flex flex-column flex-md-row justify-content-between" id="nav">
-      <a class="py-2 d-none d-md-inline-block" href="home.html">Inicio</a>
-      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-    </div>
-  </nav>
+  <header>
+    <nav class="site-header sticky-top py-1 bg-dark">
+      <div class="container d-flex flex-column flex-md-row justify-content-between" id="nav">
+        <a class="py-2 d-none d-md-inline-block" href="home.html">Inicio</a>
+        <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+        <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+        <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+        <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      </div>
+    </nav>
+  </header>
   <main role="main">
-    <div class="container mt-5">
-      <div class="text-center p-4">
+    <section class="container mt-5">
+      <hgroup class="text-center p-4">
         <h2>Descripción de la categoría</h2>
         <p class="lead">Encontrarás aquí toda la información de la categoría seleccionada.</p>
         <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea la categoría
           seleccionada previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p>
-      </div>
+      </hgroup>
       <h3 id="categoryName"></h3>
       <hr class="my-3">
       <dl>
@@ -62,7 +64,7 @@
         </dd>
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
-    </div>
+    </section>
   </main>
   <footer class="text-muted">
     <div class="container">
