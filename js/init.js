@@ -1,22 +1,24 @@
-// const CATEGORIES_URL = "https://japdevdep.github.io/ecommerce-api/category/all.json";
-// const PUBLISH_PRODUCT_URL = "https://japdevdep.github.io/ecommerce-api/product/publish.json";
-// const CATEGORY_INFO_URL = "https://japdevdep.github.io/ecommerce-api/category/1234.json";
-// const PRODUCTS_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
-// const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
-// const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
-// const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
-// const CART_INFO2_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
-// const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+const CATEGORIES_URL = "https://japdevdep.github.io/ecommerce-api/category/all.json";
+const PUBLISH_PRODUCT_URL = "https://japdevdep.github.io/ecommerce-api/product/publish.json";
+const CATEGORY_INFO_URL = "https://japdevdep.github.io/ecommerce-api/category/1234.json";
+const PRODUCTS_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
+const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
+const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
+const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
+const CART_INFO2_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
+const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
-const CATEGORIES_URL = "http://localhost:3000/categories-all";
-const CATEGORY_INFO_URL = "http://localhost:3000/category-info";
-const PRODUCTS_URL = "http://localhost:3000/products-all";
-const PRODUCT_INFO_URL = "http://localhost:3000/product-info";
-const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/product-comments";
-const PUBLISH_PRODUCT_URL = "http://localhost:3000/publish-product";
-const CART_INFO_URL = "http://localhost:3000/cart-article-single";
-const CART_INFO2_URL = "http://localhost:3000/cart-article-2";
-const CART_BUY_URL = "http://localhost:3000/cart-buy-mssg";
+
+//URLs locales
+// const CATEGORIES_URL = "http://localhost:3000/categories-all";
+// const CATEGORY_INFO_URL = "http://localhost:3000/category-info";
+// const PRODUCTS_URL = "http://localhost:3000/products-all";
+// const PRODUCT_INFO_URL = "http://localhost:3000/product-info";
+// const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/product-comments";
+// const PUBLISH_PRODUCT_URL = "http://localhost:3000/publish-product";
+// const CART_INFO_URL = "http://localhost:3000/cart-article-single";
+// const CART_INFO2_URL = "http://localhost:3000/cart-article-2";
+// const CART_BUY_URL = "http://localhost:3000/cart-buy-mssg";
 
 let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -49,86 +51,56 @@ let getJSONData = function (url) {
     });
 }
 
-//Función para agregar menú en la barra de navegación
-//(con link al perfil y opción de cerrar sesión)
-menuBarraNav = () => {
-  let nombreBarra = localStorage.getItem('nombre');
+mostrarNav = () => {
+  const nombreBarra = localStorage.getItem("nombre");
 
   let htmlContentToAppend = `
-  <div class="dropdown">
-    <button onclick="mostrarMenu()" class="dropbtn">${nombreBarra}</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a class="py-2 d-none d-md-inline-block" href="my-profile.html">Mi perfil</a>
-      <a class="py-2 d-none d-md-inline-block" href="index.html" onclick='cerrarSesion()'>Cerrar sesión</a>
-    </div>
+  <a class="navbar-brand text-light" href="home.html">Inicio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-light mg-5" href="categories.html">Categorías</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light mg-5" href="products.html">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light mg-5" href="sell.html">Vender</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light mg-5" href="cart.html">Mi carrito</a>
+      </li>
+      <li class="nav-item dropdown mg-5">
+        <a class="nav-link text-light dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ${nombreBarra}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+          <a class="dropdown-item" href="index.html" onclick='cerrarSesion()'>Cerrar sesión</a>
+        </div>
+      </li>
+    </ul>
   </div>
-`
-
-  if (document.getElementById('nav')) document.getElementById('nav').innerHTML += htmlContentToAppend;
-
-}
-
-//Función para mostrar el menú dropdown
-//cuando se hace click en el usuario
-mostrarMenu = () => {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-//Función que cierra el menú dropdown al hacer click afuera
-$(window).click(function (e) {
-  if (!e.target.matches('.dropbtn')) {
-    let dropdowns = document.getElementsByClassName("dropdown-content");
-    let i;
-    for (i = 0; i < dropdowns.length; i++) {
-      let openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-})
-
-//Botón de login de Google
-onSignIn = googleUser => {
-
-  let profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId());
-  console.log('Full Name: ' + profile.getName());
-  console.log('Given Name: ' + profile.getGivenName());
-  console.log('Family Name: ' + profile.getFamilyName());
-  console.log("Image URL: " + profile.getImageUrl());
-  console.log("Email: " + profile.getEmail());
-
-  localStorage.setItem('nombre', profile.getName());
-  localStorage.setItem('pass', passUsuario);
-  location.href = "home.html";
-
-  // The ID token you need to pass to your backend:
-  let id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
+  `
+  document.getElementById("nav-bar").innerHTML = htmlContentToAppend;
 }
 
 cerrarSesion = () => {
   localStorage.clear();
-
-  let auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(() => {
-    auth2.disconnect();
-  });
 }
 
 //Event listener que se encarga de cargar el menú
 //del usuario en la barra de navegación, y también
 //de redireccionar al login si no está hecho previamente.
 $(document).ready(function (e) {
-  menuBarraNav();
+  mostrarNav();
+  // menuBarraNav();
 
   if (!location.href.includes("index.html")) {
     if (localStorage.getItem('nombre') === null || localStorage.getItem('pass') === null) window.location.href = 'index.html';
-  }
-
-  if (location.href.includes("index.html")) {
-    if (localStorage.getItem('nombre') !== null && localStorage.getItem('pass') !== null) window.location.href = 'home.html';
   }
 });
 

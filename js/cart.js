@@ -25,7 +25,7 @@ mostrarProductos = arrayProductos => {
                     <img src="${producto.src} " alt="${producto.name} " class="img-thumbnail col-lg-8 col-md-8 col-sm-8 ">
                 </div>
                 <div class="mt-4">
-                    <div class="col py-2 d-flex w-100ol">
+                    <div class="col py-2 d-flex w-100">
                         <h5 class="mb-1">${producto.name}</h5>
                     </div>
                     <div class="col py-2 d-flex w-100">
@@ -42,21 +42,11 @@ mostrarProductos = arrayProductos => {
                         <h6><strong>Subtotal</strong></h6>
                         <p>${producto.currency} <span class="subtotal-producto">${producto.count * producto.unitCost}</span></p>
                     </div>
-                    <div class="col-sm-2 col-md-2 col-lg-3"> 
-                    <input type="button" class="text-right" onclick="borrarArticulo('producto${i}')"></input>   
-                    </div>
                 </div>
             </div>            
         </div>`
     }
     document.getElementById("interfaz-producto").innerHTML = estructuraProducto;
-}
-
-borrarArticulo = idProducto => {
-    const producto = document.getElementById(idProducto);
-    producto.remove();
-
-    calcularTotal();
 }
 
 convertirMoneda = (moneda) => {

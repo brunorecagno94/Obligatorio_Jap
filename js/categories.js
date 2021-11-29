@@ -140,22 +140,21 @@ $("#buscador-cat").keyup(function (e) {
         if (((category.name).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).includes(inputBuscador.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
             ((category.description).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).includes(inputBuscador.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
 
-            htmlContentToAppend += `
-            <a href="category-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="${category.imgSrc}" alt="${category.description} " class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${category.name}</h4>
-                            <small class="text-muted">${category.productCount} artículos</small>
+                htmlContentToAppend += `
+                <div class="list-group-item-action card col-xs-8 col-sm-6 col-md-4 col-lg-4">
+                    <a href="category-info.html" style="text-decoration:none; color: #404244">
+                        <div class="col-12">
+                            <img src="${category.imgSrc}" alt="${category.description} " class="img-thumbnail">
                         </div>
-                        <p class="mb-1">${category.description}</p>
-                    </div>
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">${category.name}</h4>
+                            </div>
+                            <p class="mb-1"><em>${category.description}</em></p>
+                        </div>
+                    </a>
                 </div>
-            </a>
-            `
+                `
         }
         $("#cat-list-container").html(htmlContentToAppend);
     }
